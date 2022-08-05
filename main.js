@@ -32,6 +32,9 @@ for (let i = 0; i < tip.length; i++) {
     });
 }
 peopleAmount.addEventListener("input", function (event) {
+    if(peopleAmount.value % 1 != 0){
+       peopleAmount.value=Math.round(peopleAmount.value);
+    }
     if(+peopleAmount.value === 0 ) {
         error.style.display = "block";
         peopleAmount.style.border = "2px solid hsla(13, 70%, 60%, 1)";
