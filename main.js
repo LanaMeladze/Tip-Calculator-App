@@ -34,23 +34,14 @@ for (let i = 0; i < tip.length; i++) {
 peopleAmount.addEventListener("input", function (event) {
     if(+peopleAmount.value === 0 ) {
         error.style.display = "block";
-        console.log("morning");
         peopleAmount.style.border = "2px solid hsla(13, 70%, 60%, 1)";
-    // } else if (peopleAmount.value == "") { 
-    //     error.style.display = "none";
-    //     peopleAmount.style.border = "none";
-    // 0-ს რომ წაშლის მომხმარებელი custom-იდან, როგორ გავაქრო ერორი?
     } 
     if ( +peopleAmount.value !== 0 || peopleAmount.value == "") {
         error.style.display = "none";
         peopleAmount.style.border = "";
     }
-    console.log(Boolean(+peopleAmount.value), Boolean(0));
-
     calculate();    
 })
-
-let clickedCustom;
 
 // Sets the default color to the buttons and calculates the custom percent
 custom.addEventListener("focus", () => {
@@ -63,6 +54,8 @@ custom.addEventListener("focus", () => {
         document.getElementById("resulted-total").innerHTML = "$" + "0.00";
     }
 });
+
+let clickedCustom;
 
 custom.addEventListener("input", function (event) {
     clickedCustom = event.target;
@@ -82,21 +75,9 @@ function calculate() {
         document.getElementById("resulted-tip").innerHTML = "$"+(new Number(tipPerPerson)).toFixed(2);
         document.getElementById("resulted-total").innerHTML = "$"+(new Number(totalPerPerson)).toFixed(2);
         document.querySelector(".reset-button").style.backgroundColor="#26C2AE";
-    }else {
+    }else{
         document.getElementById("resulted-tip").innerHTML = "$" + "0.00";
         document.getElementById("resulted-total").innerHTML = "$" + "0.00";
-    }
-}
-
-function calculateCustom() {
-    if (bill.value > 0 && percent > 0 && peopleAmount.value > 0) {
-        let totalTip = Number(bill.value) * Number(percent) / 100;
-        let tipPerPerson = totalTip / Number(peopleAmount.value);
-        let billPerPerson = Number(bill.value) / Number(peopleAmount.value);
-        let totalPerPerson = tipPerPerson + billPerPerson;
-        document.getElementById("resulted-tip").innerHTML = "$" + (new Number(tipPerPerson)).toFixed(2);
-        document.getElementById("resulted-total").innerHTML = "$" + (new Number(totalPerPerson)).toFixed(2);
-        document.querySelector(".reset-button").style.backgroundColor="#26C2AE";
     }
 }
 
